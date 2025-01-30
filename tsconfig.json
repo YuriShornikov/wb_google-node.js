@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "NodeNext",
+    "target": "es2017",
+    "baseUrl": "./",
+    "paths": {
+      "#*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "noEmit": false
+  },
+  "include": ["src/**/*", "knexfile.cjs", "knexfile.js"],
+  "exclude": ["node_modules", "src/**/*.test.*", "src/**/*.spec.*"]
+}

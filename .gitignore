@@ -1,0 +1,39 @@
+# Node modules
+/node_modules/
+
+# TypeScript build
+/dist/
+/build/
+
+/*.log
+*.log.*
+
+# Knex migration history
+/.knex/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# npm package lock files (optional, if you prefer not to commit lock files)
+# npm
+/package-lock.json
+
+# TypeScript specific
+*.tsbuildinfo
+
+# Docker
+.docker/
+
+# VS Code settings
+.vscode/
+
+# IDE and editor specific files
+.idea/
+*.swp
+*.swo

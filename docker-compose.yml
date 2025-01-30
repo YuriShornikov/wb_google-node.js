@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - mynetwork
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  app:
+    build:
+      context: .
+    container_name: app
+    restart: always
+    command: sh -c 'npx knex migrate:latest --knexfile knexfile.js && npm start'
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+    env_file:
+      - .env  # Подключение .env файла
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  db_data:
