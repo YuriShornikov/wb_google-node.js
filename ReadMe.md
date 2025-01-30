@@ -28,9 +28,7 @@ GOOGLE_SHEETS_CREDENTIALS=' - в формате ниже
 GOOGLE_SHEET_IDS='id1,id2,id3...' - в одинарных кавычках заполнить id каждой необходимой гугл таблицы через запятую без пробелов
 `
 4. Создание файла для миграции если его нет: `npx knex migrate:make create_tariffs_table --knexfile=knexfile.js`
-Прописать внутри:
-`
-exports.up = function(knex) {
+Прописать внутри:`exports.up = function(knex) {
     return knex.schema.createTable('tariffs', function(table) {
       table.increments('id').primary();
       table.date('date').notNullable();
@@ -52,9 +50,8 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
     return knex.schema.dropTableIfExists('tariffs');
-};
+};`
 
-`
 5. Запускаем команду: `npm start`, которая применяет миграцию, далее создает js файлы, а потом выполняет код
 6. Запускаем команду: `docker-compose up --build`
 7. Ниже приведены команды для докера при необходимости
@@ -69,10 +66,10 @@ docker volume ls - проверка значений
 docker ps -a - проверка контейнеров
 docker rm - удаление
 
-
+<!-- Команды для удаления в докере -->
 docker stop $(docker ps -q) - остановить все контейнеры
 docker rm $(docker ps -a -q) - удалить все контейнеры
-docker volume prune - удалить все значения
+docker volume rm $(docker volume ls -q) - удалить все значения
 
 
 
